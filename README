@@ -1,0 +1,19 @@
+What: git-new-workdir [1] with submodule support.
+
+How: in addition to creating a work directory for the parent repository, it
+also recursively creates work directories for all (initialised and updated)
+submodules.
+
+Usage:
+  * Make sure `git-new-workdir` is on your path
+  * Run `./git-new-workdir-recursive <repository> <new_workdir> [<branch>]`
+
+Bugs:
+  * it unsets `core.worktree` for each submodule in the original repo. Certain
+  scripts (e.g. vim-fugitive) will become unusable in the submodules of the
+  original repository, but work fine in the new work directories.
+
+Author: Thomas Miedema
+Homepage: https://github.com/thomie/git-new-workdir-recursive
+
+[1] https://github.com/git/git/blob/master/contrib/workdir/git-new-workdir
