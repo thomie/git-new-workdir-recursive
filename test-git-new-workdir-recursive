@@ -62,6 +62,7 @@ git new-workdir-recursive repo1 repo2
 ### Sanity check
 touch file
 git new-workdir-recursive repo1 file >/dev/null 2>&1 && die Overwriting a file should fail.
+echo "Ok 'Sanity check'"
 
 
 ### Only submodule1
@@ -69,6 +70,7 @@ git new-workdir-recursive repo1 file >/dev/null 2>&1 && die Overwriting a file s
 cd "${base}/repo2/sub.module 1"
 test $(ls -a1 "${base}/repo2/sub.module 2" | wc -l) -eq 2 || die 'repo2/sub.module 2' not empty
 test $(ls -a1 "${base}/repo2/sub.module 3" | wc -l) -eq 2 || die 'repo2/sub.module 3' not empty
+echo "Ok 'Only submodule1'"
 
 
 ### Branches are shared, checkouts are not
@@ -79,6 +81,7 @@ git checkout -q -b branch1
 cd "${base}/repo1/sub.module 1"
 git branch | grep -q 'branch1' || die no branch1
 git branch | grep '* branch1' && die branch1 checked out! || true
+echo "Ok 'Branches are shared, checkouts are not'"
 
 
 ### submodule init
@@ -90,6 +93,7 @@ git submodule -q init 'sub.module 2'
 cd ${base}
 git new-workdir-recursive repo1 repo2
 test $(ls -a1 "${base}/repo2/sub.module 2"| grep -v file1 | wc -l) -eq 2 || die 'repo2/sub.module 2' contains nonsense
+echo "Ok 'submodule init'"
 
 
 ### submodule update
@@ -99,6 +103,7 @@ git submodule -q update 'sub.module 2'
 cd ${base}
 git new-workdir-recursive repo1 repo2
 test $(ls -a1 "${base}/repo2/sub.module 2" | wc -l) -gt 2 || die 'repo2/sub.module 2' still empty
+echo "Ok 'submodule update'"
 
 
 ### update=checkout
@@ -108,6 +113,7 @@ git config 'submodule.sub.module 3.update' checkout
 cd ${base}
 git new-workdir-recursive repo1 repo2
 test $(ls -a1 "${base}/repo2/sub.module 3" | wc -l) -gt 2 || die 'repo2/sub.module 3' still empty
+echo "Ok 'update=checkout update'"
 
 
 echo ok
