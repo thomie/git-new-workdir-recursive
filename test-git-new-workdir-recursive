@@ -116,4 +116,4 @@ test $(ls -a1 "${base}/repo2/sub.module 3" | wc -l) -gt 2 || die 'repo2/sub.modu
 echo "Ok 'update=checkout update'"
 
 
-echo ok
+echo Done

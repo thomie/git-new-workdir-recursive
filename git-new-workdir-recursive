@@ -39,7 +39,7 @@ else
   echo "Creating '$2' <- '$1'"
   git new-workdir "$@" || exit $?
   # Remove non-existing `remotes`, `rr-cache` and `svn` links.
-  (cd "$2/.git" && find . -maxdepth 1 -type l -xtype l -exec rm {} \;)
+  (cd "$2/.git" && find . -maxdepth 1 -type l -exec test ! -e {} \; -delete)
 fi
 
 # Only create workdirectories for initialized submodules that don't have
